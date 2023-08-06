@@ -115,44 +115,45 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
 void solve()
 {
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
+    int n;
+   while( cin>>n){
+    if(n==0)return;
+    vector<ll> vec;
+    for(int i=1;i*i<=n;i++)
+    {
+      if(n%i==0)
+      {
+        vec.pb(i);
+        if(i*i<n)
+        {
+          int k=n/i;
+          vec.pb(k);
+        }
+      }
+    }
+    sort(all(vec));
+    int cnt=0;
+    int sz=vec.size();
+    for(int i=0;i<sz;i++)
+    {
+      for(int j=i;j<sz;j++)
+      {
+       ll k= vec[i]*vec[j];
+       ll gc=GCD(vec[i],vec[j]);
+       if(k/gc==n) cnt++;
+      }
+    }
+    cout<<n<<sp;
+   cout<<cnt<<el;
 
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
+   }
 
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
 
-     }
-     cnt++;
-     
-     
-  }
 }
-
+ 
 int main()
 {
     optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
+      file();
+    solve();
 }
-  
-

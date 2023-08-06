@@ -115,44 +115,49 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
 void solve()
 {
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
+    int t;
+   cin>>t;
+   for(int i=1;i<=t;i++){
+   int n;
+   string s;
+   cin>>n>>s;
+   int b=0;
+   int w=0;
+   int tie=0;
+   int a=0;
+   for(int j=0;j<n;j++)
+   {
+    if(s[j]=='B') b++;
+   else if(s[j]=='W') w++;
+   else if(s[j]=='T') tie++;
+    else if(s[j]=='A') a++;
+   }
+    if(a==n) 
+   {
+          cout<<"Case "<<i<<": "<<"ABANDONED";
+   }
+   else if(b+a==n)  cout<<"Case "<<i<<": "<<"BANGLAWASH";
 
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
+    else if(w+a==n)   cout<<"Case "<<i<<": "<<"WHITEWASH";
 
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
+    else if(b>w) cout<<"Case "<<i<<": "<<"BANGLADESH "<<b<<" - "<<w;
 
-     }
-     cnt++;
-     
-     
-  }
+   else if(w>b)   cout<<"Case "<<i<<": "<<"WWW "<<w<<" - "<<b;
+
+   else if(w==b)
+   {
+         cout<<"Case "<<i<<": "<<"DRAW "<<b<<" "<<tie;
+   }
+    cout<<el;
+   
+   }
+
+
 }
-
+ 
 int main()
 {
     optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
+      file();
+    solve();
 }
-  
-

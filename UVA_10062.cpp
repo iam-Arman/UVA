@@ -115,44 +115,66 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
 void solve()
 {
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
+    string a;
+    int C=0;
+    while(getline(cin,a))
+    {
+        if(C>0)
+            cout<<endl;
+        C++;
+        int A[127];
+        int B[127];
+        for(int i=0;i<127;i++){
+            A[i]=0;
+            B[i]=i;
+        }
+        int Len=a.length();
+        for(int i=0;i<Len;i++)
+        {
+            int c=(int)a[i];
+            A[a[i]]+=1;
+        }
+        vector<int> x;
+        vector<int> y;
+        for(int i=0;i<127;i++)
+        {
+            if(A[i]!=0){
+                x.push_back(A[i]);
+                y.push_back(B[i]);
+            }
+        }
+        for(int i=0;i<x.size();i++)
+        {
+            int ptr=0;
+            while(ptr<x.size()-i-1)
+            {
+                if(x[ptr]>x[ptr+1])
+                {
+                    swap(x[ptr],x[ptr+1]);
+                    swap(y[ptr],y[ptr+1]);
+                }
+                if(x[ptr]==x[ptr+1])
+                {
+                    if(y[ptr]<y[ptr+1])
+                    {
+                       swap(x[ptr],x[ptr+1]);
+                       swap(y[ptr],y[ptr+1]);
+                    }
+                }
+                ptr++;
+            }
+        }
+        for(int i=0;i<x.size();i++)
+        {
+            cout<<y[i]<<" "<<x[i]<<endl;
+        }
+    }
 
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
-
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
-
-     }
-     cnt++;
-     
-     
-  }
 }
-
+ 
 int main()
 {
     optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
+      file();
+    solve();
 }
-  
-

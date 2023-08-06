@@ -115,44 +115,40 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
 void solve()
 {
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
+     while(1)
+   {
+    int x,y;
+    cin>>x>>y;
+    if(x==0 and y==0) return;
+    vector<int> v(x);
+    vector<int> s(y);
+    rep(i,0,x) cin>>v[i];
+    rep(i,0,y) cin>>s[i];
+    int cnt=0;
+    if(sz(v)>=sz(s))
+    {
+      for(int i=0;i<x;i++)
+      {
+          if(binary_search(s.begin(),s.end(),v[i])) cnt++;
+      }
+    }
+    else
+    {
+       for(int i=0;i<y;i++)
+      {
+          if(binary_search(v.begin(),v.end(),s[i])) cnt++;
+      }
+    }
+    cout<<cnt<<el;
+   }
 
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
 
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
 
-     }
-     cnt++;
-     
-     
-  }
 }
-
+ 
 int main()
 {
     optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
+      file();
+    solve();
 }
-  
-

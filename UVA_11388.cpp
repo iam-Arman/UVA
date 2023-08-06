@@ -115,44 +115,18 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
 void solve()
 {
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
+     ll a,b;
+  cin>>a>>b;
+  ll k=__gcd(a,b);
+  ll m=(a*b)/k;
+  if(k==a and m==b) cout<<a<<sp<<b<<el;
+  else cout<<-1<<el;
 
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
-
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
-
-     }
-     cnt++;
-     
-     
-  }
 }
-
+ 
 int main()
 {
     optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
+      file();
+    solve();
 }
-  
-

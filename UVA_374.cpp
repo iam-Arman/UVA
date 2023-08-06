@@ -113,46 +113,39 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
                                                     ///  CODE STARTS FROM HERE    ///
 
+void bigmod(ll base,ll power,ll mod)
+{
+  ll res=1;
+  ll p=base%mod;
+  while(power>0)
+  {
+    if(power%2==1)
+    {
+      res=((res%mod)*(p%mod))%mod;
+      //res*=p;
+    }
+    power/=2;
+    p=(p%mod)*(p%mod);
+  }
+  cout<<res<<el;
+}
 void solve()
 {
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
+    ll a,b,c;
+    while(cin>>a>>b>>c)
+    {
+      bigmod(a,b,c);
+    }
+} 
 
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
-
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
-
-     }
-     cnt++;
-     
-     
-  }
-}
 
 int main()
 {
     optimise;
-   // file();
+    file();
     //test
     {
       solve();
     }
-}
   
-
+}

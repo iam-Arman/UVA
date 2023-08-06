@@ -115,44 +115,35 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
 void solve()
 {
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
+      string s;
+   getline(cin>>ws,s);
+    int k=s.size();
+    int sq=sqrt(k);
+    if(sq*sq!=k) cout<<"INVALID"<<el;
+    else
+    {
+        vector<vector<char> > vec( sq , vector<char> (sq));
+        int m=0;
+        rep(i,0,sq)
+        {
+            rep(j,0,sq)
+            {
+                vec[i][j]=s[m++];
+            }
+        }
+        rep(i,0,sq)
+        {
+            rep(j,0,sq)
+            cout<<vec[j][i];
+        }
+        cout<<el;
+    }
 
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
-
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
-
-     }
-     cnt++;
-     
-     
-  }
 }
-
+ 
 int main()
 {
     optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
+      file();
+    solve();
 }
-  
-

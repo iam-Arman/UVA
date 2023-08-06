@@ -113,46 +113,33 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
                                                     ///  CODE STARTS FROM HERE    ///
 
-void solve()
+vector<ll> vec(55);
+void fibo()
 {
-   int cnt=1;
-  while(1)
+  vec[0]=1;
+  vec[1]=2;
+  for(ll j=2;j<=52;j++)
   {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
-
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
-
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
-
-     }
-     cnt++;
-     
-     
+    vec[j]=vec[j-1]+vec[j-2];
   }
 }
-
+void solve()
+{
+  int t;
+  cin>>t;
+  for(int i=1;i<=t;i++)
+  {
+    int n;
+    cin>>n;
+    cout<<"Scenario #"<<i<<":"<<el;
+    cout<<vec[n]<<el<<el;
+  }
+}
+ 
 int main()
 {
     optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
+      file();
+       fibo();
+    solve();
 }
-  
-

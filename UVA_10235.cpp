@@ -113,46 +113,62 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
                                                     ///  CODE STARTS FROM HERE    ///
 
+set<ll> se;
+vector<ll> ve;
+vector<ll> vec(10000000,1);
+void seive()
+{
+    ll n=10000000;
+    vec[0]=0;
+    vec[1]=0;
+    for(ll i=2;i*i<=n;i++)
+    {
+        if(vec[i]==1)
+        {   
+        ve.pb(i);
+            for(ll j=i*i;j<=n;j=j+i)
+            {
+                vec[j]=0;
+            }
+        }
+    }
+for(int i=0;i<=n;i++)
+if(vec[i]) se.insert(i);
+}
 void solve()
 {
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
-
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
-
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
-
-     }
-     cnt++;
-     
-     
-  }
+     int n;
+     while(cin>>n)
+   {
+    if(se.count(n)==0)
+    {
+        cout<<n<<" is not prime."<<el;
+        continue;
+    }
+    int nn=n;
+    string k;
+    while(n)
+    {
+        k.pb((n%10)+'0');
+        n/=10;
+    }
+    int m=0;
+    for(ll i=0;i<k.size();i++)
+    {
+        m=m*10+(k[i]-'0');
+    }
+    bool am=se.count(nn);
+    bool bm=se.count(m);
+   if(am and bm and nn!=m) cout<<nn<<" is emirp."<<el;
+   else cout<<nn<<" is prime."<<el;
 }
 
+}
+ 
 int main()
 {
     optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
+      file();
+      seive();
+    solve();
 }
-  
-

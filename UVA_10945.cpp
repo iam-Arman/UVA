@@ -112,47 +112,31 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
 
                                                     ///  CODE STARTS FROM HERE    ///
-
+int cnt=0;
 void solve()
 {
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
-
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
-
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
-
-     }
-     cnt++;
-     
-     
-  }
+   string s;
+   getline(cin,s);
+   if(s=="DONE") cnt=1;
+   string a,b;
+   rep(i,0,s.size())
+   {
+    if(s[i]>='a' && s[i]<='z' || (s[i]>='A' && s[i]<='Z'))
+    a.pb(tolower(s[i]));
+   }
+   b=a;
+   reverse(b.begin(),b.end());
+   if(cnt!=1){
+   if(a==b) cout<<"You won't be eaten!"<<el;
+   else cout<<"Uh oh.."<<el;
+   }
 }
-
 int main()
 {
-    optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
-}
-  
+  optimise;
+   while(cnt!=1)
+   {
+    solve();
+   }
 
+}

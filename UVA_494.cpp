@@ -115,44 +115,30 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
 void solve()
 {
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
+    string s;
+   while(getline(cin>>ws,s))
+   {
+    int cnt=0;
+    for(int i=0;i<s.size();i++)
+    {
+        if(s[i]>='a' and s[i]<='z' or s[i]>='A' and s[i]<='Z') 
+        {
+             if(!(s[i+1]>='a' and s[i+1]<='z' or s[i+1]>='A' and s[i+1]<='Z') )
+             cnt++;
+        }
+    }
+    cout<<cnt<<el;
+   }
 
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
-
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
-
-     }
-     cnt++;
-     
-     
-  }
 }
 
 int main()
 {
     optimise;
-   // file();
+    file();
     //test
     {
       solve();
     }
-}
   
-
+}

@@ -115,44 +115,41 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
 void solve()
 {
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
+   int j=1;
+   while(1)
+   {
+    int n;
+    cin>>n;
+    if(n==0)
+    {
+        return 0;
+    }
+    int arr[n];
+    int ca=0,cb=0;
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+        if(arr[i]>=1 && arr[i]<=99)
+        {
+            ca++;
+        }
+        else if(arr[i]==0)
+        {
+            cb++;
+        }
+    }
+     cout<<"Case "<<j<<": "<<ca-cb<<endl;
+     j++;
+   }
 
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
 
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
+    
 
-     }
-     cnt++;
-     
-     
-  }
 }
-
+ 
 int main()
 {
     optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
+      file();
+    solve();
 }
-  
-

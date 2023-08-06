@@ -115,44 +115,35 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
 void solve()
 {
-   int cnt=1;
-  while(1)
+     string a,b;
+  cin>>a>>b;
+  int m=a.size();
+  int n=b.size();
+  bool flag=true;
+  if(m==n)
   {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
-
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
-
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
-
-     }
-     cnt++;
-     
-     
+    rep(i,0,m)
+    {
+    if(a[i]==b[i])
+    {
+      continue;
+    }
+    else if((a[i]=='a' || a[i]=='e'|| a[i]=='i'|| a[i]=='o' || a[i]=='u') && (b[i]=='a' || b[i]=='e'|| b[i]=='i'|| b[i]=='o' || b[i]=='u'))
+         continue;
+      else {
+        flag=false;
+        break;
+      }
+    }
   }
-}
+  if(flag==true && m==n) cout<<"Yes"<<endl;
+  else cout<<"No"<<endl;
 
+}
+ 
 int main()
 {
     optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
+      file();
+    solve();
 }
-  
-

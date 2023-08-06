@@ -113,46 +113,51 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
                                                     ///  CODE STARTS FROM HERE    ///
 
-void solve()
+vector<ll> se;
+void seive()
 {
-   int cnt=1;
-  while(1)
+    int n=10e6;
+    vector<bool> p(10e6,true);
+    p[0]=false;
+    p[1]=false;
+    for(int i=2;i<=n;i++)
+    {
+        if(p[i])
+        {
+          for(int j=i+i;j<=n;j=j+i)
+          {
+            p[j]=false;
+          }
+        }
+    }
+  for(int i=0;i<=n;i++)
   {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
-
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
-
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
-
-     }
-     cnt++;
-     
-     
+    if(p[i]) se.pb(i);
   }
 }
-
+void solve()
+{
+  while(1){
+  int n;
+  cin>>n;
+  if(n==0) break;
+  int cnt=0;
+  for(int i=0;se[i]<=n/2;i++)
+  {
+    for(int j=0;j<n;j++)
+    {
+      if(se[i]+se[j]==n) cnt++;
+      if(se[i]+se[j]>n) break;
+    }
+  }
+  cout<<cnt<<el;
+  }
+}
+ 
 int main()
 {
     optimise;
-   // file();
-    //test
-    {
-      solve();
-    }
+      file();
+      seive();
+    solve();
 }
-  
-

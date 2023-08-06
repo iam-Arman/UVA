@@ -113,46 +113,33 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
                                                     ///  CODE STARTS FROM HERE    ///
 
-void solve()
-{
-   int cnt=1;
-  while(1)
-  {
-     int n,m;
-     cin>>n>>m;
-     if(n==0 and m==0) return;
-     vector<int> vec(n);
-
-     for(int i=0;i<n;i++)
-     {
-      cin>>vec[i];
-     }
-     sort(all(vec));
-
-     cout<<"CASE# "<<cnt<<":"<<el;
-     for(int i=0;i<m;i++)
-     {
-      int x;
-      cin>>x;
-      int k=lower_bound(all(vec),x)-vec.begin();
-    if(k<n and vec[k]==x) cout<<x<<" found at "<<k+1<<el;
-    else cout<<x<<" not found"<<el;
-
-     }
-     cnt++;
-     
-     
-  }
-}
 
 int main()
 {
-    optimise;
-   // file();
-    //test
+  optimise;
+  int n;
+  while(cin>>n)
+  {
+    int arr[n+5];
+    rep(i,0,n) cin>>arr[i];
+     vector<int> vec;
+    rep(i,0,n-1)
     {
-      solve();
+      vec.pb(abs(arr[i]-arr[i+1]));
     }
+    bool flag=true;
+    int k=n-1;
+    srt(vec);
+    rep(i,0,k)
+    {
+       if(vec[i]!=i+1)
+       {
+        flag=false;
+        break;
+       }
+    }
+    if(flag==true) cout<<"Jolly"<<endl;
+    else cout<<"Not jolly"<<endl;
+  }
+   R0;
 }
-  
-
